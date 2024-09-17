@@ -1,3 +1,4 @@
+//terea 5
 window.onload = () => {
 
 
