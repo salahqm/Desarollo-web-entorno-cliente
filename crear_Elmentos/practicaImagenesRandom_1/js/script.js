@@ -2,13 +2,7 @@ window.addEventListener("load",inicio)
 function inicio(){
 
     
-   
-    for(let i = 0;i>20;i++){
-
-       
-
-    }
-   
+    const imagenes = document.querySelectorAll('img')
     setInterval(()=>{
         imagenes.forEach((img)=>{
             var num = Math.floor(Math.random() * 20);

@@ -1,8 +1,19 @@
-window.addEventListener("load",inicio)
+ window.addEventListener("load",inicio)
 function inicio(){
 
     
-    const imagenes = document.querySelectorAll('img')
+    
+    const div = document.querySelector('.gallery');
+  
+    for(var i =0;i<10;i++){
+        const img=document.createElement('img')
+       img.textContent=i;
+        img.className='gallery img'
+        div.appendChild(img)
+    }
+
+    const imagenes = document.querySelectorAll('.gallery img');
+
     setInterval(()=>{
         imagenes.forEach((img)=>{
             var num = Math.floor(Math.random() * 20);
