@@ -6,13 +6,14 @@ window.addEventListener('load',() =>{
 
     const contendor = document.createElement('div')
     contendorPadre.appendChild(contendor)
-    var contador;
+   
     
-    boton.addEventListener('click' , ()=>{
-        
-        
+    boton.addEventListener('mousemove' , ()=>{
+
+        //Limpiar contenedor antes de agregar nuevas imágenes, con el innerHtml
+        contendor.innerHTML='';
         for(let i =0;i<21;i++){
-            
+           
             const imagenes = document.createElement('img')
             const num = Math.floor(Math.random()*21)
             if(i % 2 ==0){
@@ -22,15 +23,10 @@ window.addEventListener('load',() =>{
             }
 
             contendor.appendChild(imagenes)
-            contador++
-            
            
-            
         }
-        if(contador>20){
-            contendor.removeChild(imagenes)
-        }
-
+         
+        
     })
     
    
