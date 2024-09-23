@@ -7,33 +7,35 @@ function inicio() {
   const botonParar = document.createElement("button");
   const puntos = document.getElementById("sppuntos");
   const tiempo = document.createElement("p");
-  botonParar.textContent = "Parar"; 
+
+  botonParar.textContent = "Parar";
   div.appendChild(botonParar);
-  div.appendChild(tiempo); 
+  div.appendChild(tiempo);
   const cajaColor = document.createElement("div");
   body.appendChild(cajaColor);
-  cajaColor.className = "fondo ";
+  cajaColor.className = "fondo";
 
   let puntuacion = 0;
   let pararJuego;
   let temporizador;
-  let tiempoRestante =30; // Tiempo inicial en segundos
+  let tiempoRestante;
   let num1, num2;
 
-  // vector de colores
+  // Vector de colores
   const colores = ["red", "green", "blue", "pink", "yellow"];
 
   botonJugar.addEventListener("click", () => {
     puntuacion = 0;
-    
+    tiempoRestante = 30; 
+
     puntos.textContent = "Puntos: " + puntuacion;
     tiempo.textContent = "Tiempo restante: " + tiempoRestante + "s";
 
-    // clear intervar lo que hace es detener el intevalo
+    // Limpiar cualquier intervalo anterior
     clearInterval(pararJuego);
     clearInterval(temporizador);
 
-    // Actualizar los colores cada cierto tiempo
+    // Actualizar los colores cada 1.5 segundos
     pararJuego = setInterval(() => {
       num1 = numRandom();
       num2 = numRandom();
@@ -47,33 +49,34 @@ function inicio() {
       tiempo.textContent = "Tiempo restante: " + tiempoRestante + "s";
 
       if (tiempoRestante <= 0) {
-        clearInterval(intervalo);
+        clearInterval(pararJuego);
         clearInterval(temporizador);
         cajaColor.style.backgroundColor = ""; // Restablecer el fondo
         cajaColor.textContent = ""; // Limpiar el texto
-        tiempo.textContent = "se termino el juego";
+        tiempo.textContent = "Se terminó el juego";
       }
     }, 1000);
-    // Listener para el click en la caja
-  cajaColor.addEventListener("click", () => {
-    if (colores[num1] === colores[num2]) {
-      puntuacion++;
-    } else {
-      puntuacion--;
-    }
-    puntos.textContent = "Puntos: " + puntuacion;
-  });
-  });
- 
 
-  botonParar.addEventListener("click", () => {
-    clearInterval(intervalo);
-    clearInterval(temporizador);
-    cajaColor.style.backgroundColor = "";
-    cajaColor.textContent = "";
-    puntos.textContent = "Puntos: " + puntuacion;
-    tiempo.textContent = "Juego detenido";
+    // Listener para el click en la caja
+    cajaColor.addEventListener("click", () => {
+      if (colores[num1] === colores[num2]) {
+        puntuacion++;
+      } else {
+        puntuacion--;
+      }
+      puntos.textContent = "Puntos: " + puntuacion;
+    });
+    botonParar.addEventListener("click", () => {
+      clearInterval(pararJuego);
+      clearInterval(temporizador);
+      cajaColor.style.backgroundColor = "";
+      cajaColor.textContent = "";
+      puntos.textContent = "Puntos: " + puntuacion;
+      tiempo.textContent = "Juego detenido";
+    });
   });
+
+ 
 
   function numRandom() {
     return Math.floor(Math.random() * colores.length);
