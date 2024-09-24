@@ -1,6 +1,17 @@
 * {
     box-sizing: border-box;
 }
+.caja {
+    margin: 0 auto;
+    border: 1px solid black;
+    width: 20%;
+   
+    justify-content: center;      /* Centra horizontalmente el contenido */
+  
+    height: 200px;                /* Define una altura para que el centrado vertical funcione */
+    text-align: center;           /* Centra el texto dentro de la caja */
+}
+
 
 .container {
     border:1px solid black;
