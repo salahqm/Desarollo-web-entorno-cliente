@@ -21,7 +21,7 @@ accion.onsubmit = () => {
   let nombre = document.querySelector("#idNombre").value;
   let smNombre = document.getElementById("smNombre");
   for (let i = 0; i < nombre.length; i++) {
-    if (!isNaN(nombre[i]) && nombre[i] !== " ") {
+    if (!isNaN(nombre[i])) {
       validar = false;
       smNombre.textContent = "El valor introducido no debe ser numérico";
       break;
