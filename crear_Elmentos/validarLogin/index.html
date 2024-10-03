@@ -18,9 +18,14 @@
     </head>
       <body>
         <form action="http://moralo.atwebpages.com/chatCamacho/noregistrados.php" method="get" id="validar">
-            <div class="form-group">
+          <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" id="nombre" aria-describedby="nombre" placeholder="Enter email">
+            <small id="smNombre" class="form-text text-muted"></small>
+          </div>  
+          <div class="form-group">
               <label for="email">Email address</label>
-              <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+              <input type="text" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
               <small id="smEmail" class="form-text text-muted"></small>
             </div>
             <div class="form-group">
