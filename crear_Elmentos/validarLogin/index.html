@@ -20,7 +20,7 @@
         <form action="http://moralo.atwebpages.com/chatCamacho/noregistrados.php" method="get" id="validar">
           <div class="form-group">
             <label for="nombre">Nombre</label>
-            <input type="text" class="form-control" id="nombre" aria-describedby="nombre" placeholder="Enter email">
+            <input type="text" class="form-control" id="nombre" aria-describedby="nombre" placeholder="Enter name">
             <small id="smNombre" class="form-text text-muted"></small>
           </div>  
           <div class="form-group">
@@ -29,13 +29,19 @@
               <small id="smEmail" class="form-text text-muted"></small>
             </div>
             <div class="form-group">
-              <label for="contraseña">Password</label>
+              <label for="contraseña">Contraseña</label>
               <input type="password" class="form-control" id="contraseña" placeholder="Password">
               <small id="smContraseña" class="form-text text-muted"></small>
+            </div>
+            <div class="form-group"></div>
+              <label for="contraseña">Repetir Contraseña</label>
+              <input type="password" class="form-control" id="contraseña2" placeholder="Password">
+              <small id="smContraseña2" class="form-text text-muted"></small>
             </div>
             <div class="form-group form-check">
               <input type="checkbox" class="form-check-input" id="check">
               <label class="form-check-label" for="termsCheck">Check me out</label>
+              <small id="smCheck" class="form-text text-muted"></small>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
