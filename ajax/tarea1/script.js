@@ -5,10 +5,10 @@ window.addEventListener('load', () => {
 
     const ubicacion = document.querySelector('#fila');
     fetch(url)
-        .then(response => response.text())
+        .then(response => response.json())
         .then(datos => mostrarDatos(datos))
-        .finally(() => alert("biennnnnnnnn"))
-        .catch(error => alert(error.data))
+        .finally(() => console.log("biennnnnnnnn"))
+        .catch(error => console.log(error.data))
 
 
     function mostrarDatos(datos) {
@@ -21,7 +21,8 @@ window.addEventListener('load', () => {
             tarjeta.className="card"
             columna.appendChild(tarjeta)
             const videoW= document.createElement('video');
-            videoW.setAttribute('src',webc.url)
+            videoW.setAttribute('src',webc.url,'autoplay loop')
+            
             tarjeta.appendChild(videoW)
             const cardBody = document.createElement('div')
             cardBody.className="card-body"
