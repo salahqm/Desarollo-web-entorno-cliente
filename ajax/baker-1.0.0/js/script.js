@@ -22,41 +22,47 @@ const enlacesPrincipales = document.querySelectorAll(
 );
 
 enlacesPrincipales.forEach((item, indice) => {
-    item.textContent = listaPanaderias[indice];
-    // corregir mas tarde
-    item.setAttribute("href", listaEnlaces[indice]);
-  });
+  item.textContent = listaPanaderias[indice];
+
+  item.setAttribute("href", listaEnlaces[indice]);
+});
 const numerosAleatorios = document.querySelectorAll(".display-5");
-introducirNumAleatorios(numerosAleatorios)
-
-
+introducirNumAleatorios(numerosAleatorios);
 
 function inicio() {
-    
-    const url ="getPanaderos.json"
+  const url = "/ajax/baker-1.0.0/js/getPanaderos.json";
+  console.log(url);
 
-    fetch(url)
+  fetch(url)
     .then((response) => response.json())
     .then((datos) => mostrarDatos(datos))
     .finally(() => console.log("vamosssss,funciona"))
     .catch((error) => console.log(error));
-    
 
     function mostrarDatos(datos) {
-        datos.forEach(item => {
-            const imgPanaderos = document.querySelector('.flex-shrink-0');
-            imgPanaderos.src=item.imagen;
-            const nombrePanaderos = document.querySelector('.mb-1');
-            nombrePanaderos.textContent=item.nombre
-            const oficioPanaderos = document.querySelector('.ms-4 span');
-            oficioPanaderos.textContent=item.funcion;
-            
-
-
-        });
+      datos.forEach((item, index) => {
         
-    }
+        const imgPanaderos = document.querySelectorAll(".img-fluid")[index];
+        imgPanaderos.src = item.imagen;
 
+        console.log(imgPanaderos.src)
+    
+      
+        const nombrePanaderos = document.querySelectorAll(".team-title h5")[index];
+        nombrePanaderos.textContent = item.nombre;
+    
+       
+        const oficioPanaderos = document.querySelectorAll(".team-title span")[index];
+        if(item.funcion){
+          oficioPanaderos.textContent = item.funcion;
+        }else if(item.ingredientes){
+          oficioPanaderos.textContent = item.ingredientes;
+        }
+       
+        
+      });
+    }
+    
 }
 function introducirNumAleatorios(array) {
   let num1 = Math.floor(Math.random() * 20);
