@@ -90,15 +90,14 @@ function inicio() {
 
   function mostrarDatosCocineros(datos) {
     datos.forEach((element, index) => {
-      /*const img = document.querySelectorAll('.img-fluid.testimonial-img')[index]
-           img.src=element.imagen
-*/
+      const img = document.querySelectorAll(".col-lg-2.text-center img")[index];
+      img.src = element.imagen;
 
       const nombre = document.querySelectorAll(".testimonial-item h3")[index];
-        if (nombre) {
-            nombre.innerHTML = element.nombre;
-        }
-     
+      if (nombre) {
+        nombre.innerHTML = element.nombre;
+      }
+
       const descripcion = document.querySelectorAll(
         ".bi.bi-quote.quote-icon-left"
       )[index];

@@ -24,7 +24,7 @@ const enlacesPrincipales = document.querySelectorAll(
 enlacesPrincipales.forEach((item, indice) => {
   item.textContent = listaPanaderias[indice];
 
-  item.setAttribute("href", listaEnlaces[indice]);
+  item.setAttribute("href", "https://" + listaEnlaces[indice]);
 });
 const numerosAleatorios = document.querySelectorAll(".display-5");
 introducirNumAleatorios(numerosAleatorios);
@@ -39,30 +39,24 @@ function inicio() {
     .finally(() => console.log("vamosssss,funciona"))
     .catch((error) => console.log(error));
 
-    function mostrarDatos(datos) {
-      datos.forEach((item, index) => {
-        
-        const imgPanaderos = document.querySelectorAll(".img-fluid")[index];
-        imgPanaderos.src = item.imagen;
+  function mostrarDatos(datos) {
+    datos.forEach((item, index) => {
+      const imgPanaderos = document.querySelectorAll(".team-item img")[index];
+      imgPanaderos.setAttribute("src", item.imagen);
 
-        console.log(imgPanaderos.src)
-    
-      
-        const nombrePanaderos = document.querySelectorAll(".team-title h5")[index];
-        nombrePanaderos.textContent = item.nombre;
-    
-       
-        const oficioPanaderos = document.querySelectorAll(".team-title span")[index];
-        if(item.funcion){
-          oficioPanaderos.textContent = item.funcion;
-        }else if(item.ingredientes){
-          oficioPanaderos.textContent = item.ingredientes;
-        }
-       
-        
-      });
-    }
-    
+      const nombrePanaderos =
+        document.querySelectorAll(".team-title h5")[index];
+      nombrePanaderos.textContent = item.nombre;
+
+      const oficioPanaderos =
+        document.querySelectorAll(".team-title span")[index];
+      if (item.funcion) {
+        oficioPanaderos.textContent = item.funcion;
+      } else if (item.ingredientes) {
+        oficioPanaderos.textContent = item.ingredientes;
+      }
+    });
+  }
 }
 function introducirNumAleatorios(array) {
   let num1 = Math.floor(Math.random() * 20);
