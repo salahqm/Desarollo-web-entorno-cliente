@@ -47,7 +47,6 @@ function inicio() {
       const nombrePanaderos =
         document.querySelectorAll(".team-title h5")[index];
       nombrePanaderos.textContent = item.nombre;
-
       const oficioPanaderos =
         document.querySelectorAll(".team-title span")[index];
       if (item.funcion) {
