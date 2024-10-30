@@ -36,19 +36,19 @@ function inicio() {
       separadorColumnas = element.split(";");
       const tr = document.createElement("tr");
       tbody.appendChild(tr);
+
       if (i > 0) {
         separadorColumnas.forEach((element) => {
           const td = document.createElement("td");
           td.innerHTML = element;
           tr.appendChild(td);
         });
-        console.log(element);
-        const td = document.querySelectorAll("td");
-        if (Number(element[2]) > Number(element[3])) {
-          td[2].style.backgroundColor = "blue";
-          console.log("siuuu");
+        const td = document.querySelector("td");
+        console.log(td);
+        if (Number(separadorColumnas[2]) > Number(separadorColumnas[3])) {
+          td.style.backgroundColor = "red";
         } else {
-          td[3].style.backgroundColor = "red";
+          td.style.backgroundColor = "blue";
         }
       }
     });
