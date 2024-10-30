@@ -43,14 +43,46 @@ function inicio() {
           td.innerHTML = element;
           tr.appendChild(td);
         });
-        const td = document.querySelector("td");
-        console.log(td);
-        if (Number(separadorColumnas[2]) > Number(separadorColumnas[3])) {
-          td.style.backgroundColor = "red";
-        } else {
-          td.style.backgroundColor = "blue";
-        }
+        console.log(separadorColumnas)
+        
+        
       }
     });
+    let representasBiden =0;
+    let representasTrump =0;
+
+    const tr = tbody.querySelectorAll("tr");
+    tr.forEach((tr,i) => {
+      const celdas = tr.querySelectorAll("td");
+      console.log(celdas)
+      if (i > 0) { 
+        const td = document.createElement('td');
+        const td2 = document.createElement('td');
+       
+        if (Number(celdas[2].textContent) > Number(celdas[3].textContent)) {
+          td.textContent="Biden"
+          td2.textContent=celdas[1].textContent;
+          representasBiden+=Number(celdas[1].textContent)
+          celdas[2].style.backgroundColor = "blue";
+        } else if (Number(celdas[2].textContent) < Number(celdas[3].textContent)) {
+          celdas[3].style.backgroundColor = "red";
+          td.textContent="Trump"
+          td2.textContent=celdas[1].textContent;
+          representasTrump+=Number(celdas[1].textContent)
+        }
+        tr.appendChild(td)
+        tr.appendChild(td2) 
+
+      }
+    });
+
+    const p1 = document.createElement('p')
+    const p2 = document.createElement('p')
+
+    p1.textContent="Representantes de Trump-->"+representasTrump
+    p2.textContent="Representantes de Biden-->"+representasBiden
+    contenedor.append(p1,p2)
+
+
   }
 }
