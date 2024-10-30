@@ -61,7 +61,7 @@ window.addEventListener("DOMContentLoaded", () => {
     tempMaxMedia = tempMaxMedia / tempMax.length;
     p.textContent = "La media de la temperatura maxima es -->" + tempMaxMedia;
   }
-  function calcularTempMaxPluviometria() {
+  function calcularTempMax0Pluviometria() {
     for (let index = 0; index < pluviometria.length; index++) {
       pluviometriaMedia += pluviometria[index];
     }
