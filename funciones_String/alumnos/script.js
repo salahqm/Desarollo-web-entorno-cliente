@@ -6,7 +6,7 @@ function inicio() {
   tabla.className = "table";
   const tbody = document.createElement("tbody");
   const thead = document.createElement("thead");
-  thead.className = "thead-dark"; 
+  thead.className = "thead-dark";
 
   contenedor.appendChild(tabla);
   tabla.appendChild(thead);
@@ -34,6 +34,9 @@ function inicio() {
       th.textContent = element;
       tr.appendChild(th);
     });
+    const th = document.createElement("th");
+    th.textContent = "Evaulacion";
+    tr.appendChild(th);
 
     separadorFilas.forEach((element, i) => {
       if (i > 0) {
@@ -49,19 +52,30 @@ function inicio() {
     });
 
     const tdTodos = document.querySelectorAll("tr");
+    
     let contador = 0;
+
     tdTodos.forEach((tr, i) => {
-      
+    
+
+      let mediaNotas = 0;
       const celdas = tr.querySelectorAll("td");
+
       if (i > 0) {
+        const tdMedia = document.createElement("td");
+        tr.appendChild(tdMedia);
         celdas.forEach((td, index) => {
-          if (index > 1) {
+          if (index > 1 && index < 7) {
+            mediaNotas += Number(td.textContent);
             if (Number(td.textContent) >= 5) {
               contador++;
             }
           }
         });
+        mediaNotas /= celdas.length - 2;
+       tdMedia.textContent=mediaNotas
       }
+
       switch (contador) {
         case 5:
           tr.style.backgroundColor = "green";
@@ -82,7 +96,24 @@ function inicio() {
           tr.style.backgroundColor = "red";
           break;
       }
-       contador = 0;
+      contador = 0;
     });
+    
+   
+
+    tdTodos.forEach((tr, i) => {
+        const celdas = tr.querySelectorAll("td");
+        if(i>0){
+            if (celdas[7].textContent >=5) { 
+               celdas[7].style.backgroundColor="green"
+              celdas[7].textContent = "APROBADO :)"
+            } else {
+               celdas[7].style.backgroundColor="red"
+               celdas[7].textContent = "SUSPENSO :("
+                
+            }
+        }      
+    });
+    
   }
 }
