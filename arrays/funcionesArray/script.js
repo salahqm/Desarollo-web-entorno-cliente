@@ -151,3 +151,16 @@ console.log(listadorPrecio);
 const listadoStock = fruta.slice().sort((a, b) => a.stock - b.stock);
 console.log(listadoStock);
 // Imprime el array de frutas ordenado por stock
+
+const alumnos2 = [
+  { nombre: "Paco", edad: 18 },
+  { nombre: "Mou", edad: 20 },
+  { nombre: "Andrés", edad: 19 },
+];
+let alMasEdad = alumnos2[0];
+alumnos2.forEach((item) => {
+  if (item.edad > alMasEdad.edad) {
+    alMasEdad = item;
+  }
+});
+console.log(alMasEdad);
