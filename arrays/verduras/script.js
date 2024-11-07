@@ -56,4 +56,3 @@ const precioMayor = frutas
   .map((fruta) => fruta.nombre);
 
 console.log(precioMayor);
- 
