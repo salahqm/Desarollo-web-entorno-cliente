@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ejercicio4": {
+    "proyecto0": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ejercicio4",
+            "outputPath": "dist/proyecto0",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -22,8 +22,7 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets",
-              "src/_redirects"
+              "src/assets"
             ],
             "styles": [
               "src/styles.css"
@@ -58,13 +57,13 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-         "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ejercicio4:build:production"
+              "browserTarget": "proyecto0:build:production"
             },
             "development": {
-              "browserTarget": "ejercicio4:build:development"
+              "browserTarget": "proyecto0:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -72,7 +71,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ejercicio4:build"
+            "browserTarget": "proyecto0:build"
           }
         },
         "test": {
@@ -97,6 +96,6 @@
     }
   },
   "cli": {
-    "analytics": "02776a2b-90ea-41db-8128-c6ae8d51fdf3"
+    "analytics": "fe5b01b6-46a2-4155-872a-26c357d22311"
   }
 }
