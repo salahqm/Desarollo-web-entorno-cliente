@@ -1,0 +1,17 @@
+<h3>{{segundos}}</h3>
+<div class="centrar">
+  <div class="row">
+    <div class="col-lg-4">
+      <div [ngClass]="clase">
+        <p>Quiero jugar siempre bien y ganar títulos. Solo estoy en el comienzo. Frase de Cristiano Ronaldo donde vemos
+          que el portugués no se pone ningún tipo de techo.</p>
+      </div>
+    </div>
+    <button (click)="activar()" [disabled]="activado">{{nombreBoton}}</button>
+  </div>
+  <div>
+    <ul *ngFor="let persona of personas;let indice = index">
+      <li (mouseover)="verEdad(indice)" (mouseleave)="verNombre()">{{indicehover === indice ? persona.edad : persona.nombre }}</li>
+      </ul>
+  </div>
+  <!--  SEGUNDA FILA -->
