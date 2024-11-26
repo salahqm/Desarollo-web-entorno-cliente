@@ -13,7 +13,7 @@ export class ListadoProductoComponent implements OnInit {
   constructor(private servicio:ServicioService) {
     this.servicio.leerProductos().subscribe((Productos:ProductoModule[])=>{
       this.listaProductos=Productos;
-    });
+    })
    }
 
   ngOnInit(): void {
