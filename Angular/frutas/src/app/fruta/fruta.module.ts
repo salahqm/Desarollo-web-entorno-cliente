@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
   ]
 })
 export class FrutaModule {
-  id!:string;
+  id!:number;
   nombre!:string;
   precio!:number;
   unidades!:number;
