@@ -9,7 +9,7 @@ import { ServicioService } from '../servicio.service';
   styleUrls: ['./fruteria.component.css']
 })
 export class FruteriaComponent {
-  mensaje!:string;
+  mensaje!: string;
 
   listaFrutas!: FrutaModule[];
 
@@ -29,52 +29,67 @@ export class FruteriaComponent {
     imagen: ''
   }
 
-  fruta!: FrutaModule;
+  fruta: FrutaModule = {
+    id: 0,
+    nombre: '',
+    precio: 0,
+    unidades: 0,
+    imagen: ''
+  };
 
 
   aniadirProducto(form: { value: FrutaModule; }) {
     this.servicio.crearFruta(form.value).subscribe((producto: FrutaModule) => {
       this.fruta = producto;
-       // para refrescar la pagina
+
+      this.mensaje = 'Producto ' + this.frutaSeleccionada.nombre + ' agregado exitosamente';
+
       this.servicio.leerFrutas().subscribe((Frutas: FrutaModule[]) => {
         this.listaFrutas = Frutas;
-      })
+      });
 
-      this.mensaje = 'Producto '+producto.nombre+' agregado exitosamente';
     })
+
 
   }
 
 
-  eliminar(id:number) {
-    this.servicio.eliminar(id).subscribe((producto:FrutaModule)=>{
+  eliminar(id: number) {
+    this.servicio.eliminar(id).subscribe((producto: FrutaModule) => {
       this.fruta = producto;
-       // para refrescar la pagina
-       this.servicio.leerFrutas().subscribe((Frutas: FrutaModule[]) => {
-      this.listaFrutas = Frutas;
-    })
-    this.mensaje = 'Producto'+producto.nombre+' eliminado exitosamente';
+      // para refrescar la pagina
+
+
+      this.mensaje = 'Producto' + this.frutaSeleccionada.nombre + ' eliminado exitosamente';
+
+      // Refrescar lista sin recargar la página
+      this.servicio.leerFrutas().subscribe((Frutas: FrutaModule[]) => {
+        this.listaFrutas = Frutas;
+      });
     })
 
   }
 
   // para visualizar el producto seleccionado en el formulario
-  modificar(producto:FrutaModule) {
+  modificar(producto: FrutaModule) {
     this.frutaSeleccionada = producto;
   }
-  actualizarProducto(form:{value:FrutaModule;}) {
-    form.value.id = this.fruta.id;
-    form.value.nombre = this.fruta.nombre;
-    form.value.precio = this.fruta.precio;
-    form.value.unidades = this.fruta.unidades;
-    form.value.imagen = this.fruta.imagen;
+  actualizarProducto(form: { value: FrutaModule }) {
+    this.fruta.id = form.value.id;
+    this.fruta.nombre = form.value.nombre;
+    this.fruta.precio = form.value.precio;
+    this.fruta.unidades = form.value.unidades;
+    this.fruta.imagen = form.value.imagen;
+
     this.servicio.actualizar(form.value).subscribe((producto: FrutaModule) => {
       this.fruta = producto;
+      this.mensaje = 'Producto ' + this.frutaSeleccionada.nombre + ' actualizado exitosamente';
+
+      // Refrescar lista sin recargar la página
       this.servicio.leerFrutas().subscribe((Frutas: FrutaModule[]) => {
         this.listaFrutas = Frutas;
-      })
+      });
     })
-    this.mensaje = 'Producto'+this.fruta.nombre+' actualizado exitosamente';
 
 
   }

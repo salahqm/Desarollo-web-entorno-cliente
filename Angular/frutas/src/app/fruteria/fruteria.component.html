@@ -35,34 +35,35 @@
       <form #f="ngForm" class="form-horizontal">
         <div class="form-group">
           <label>ID</label>
-          <input ngModel="{{frutaSeleccionada.id}}" name="id" type="text" class="form-control" placeholder="Ingrese id">
+          <input [(ngModel)]="frutaSeleccionada.id" name="id" type="text" class="form-control" placeholder="Ingrese id">
+
         </div>
-
         <div class="form-group">
-
           <label>Nombre</label>
-          <input [(ngModel)]="frutaSeleccionada.nombre" name="nombre" type="text" class="form-control" placeholder="Ingrese nombre">
+          <input [(ngModel)]="frutaSeleccionada.nombre" name="nombre" type="text" class="form-control"
+            placeholder="Ingrese nombre">
         </div>
         <div class="form-group">
           <label>Precio</label>
-          <input ngModel="{{frutaSeleccionada.precio}}" name ="precio" type="number" class="form-control" placeholder="Ingrese precio">
+          <input [(ngModel)]="frutaSeleccionada.precio" name="precio" type="number" class="form-control"
+            placeholder="Ingrese precio">
         </div>
         <div class="form-group">
           <label>Unidades</label>
-          <input ngModel="{{frutaSeleccionada.unidades}}" type="number" class="form-control" placeholder="Ingrese unidades">
+          <input [(ngModel)]="frutaSeleccionada.unidades" name="unidades" type="number" class="form-control"
+            placeholder="Ingrese unidades">
         </div>
         <div class="form-group">
           <label>Imagen</label>
-          <input ngModel="{{frutaSeleccionada.imagen}}" name="imagen" type="text" class="form-control" placeholder="Ingrese imagen">
+          <input [(ngModel)]="frutaSeleccionada.imagen" name="imagen" type="text" class="form-control"
+            placeholder="Ingrese imagen">
         </div>
-        <button (click)="aniadirProducto(f)"  class="btn btn-outline-success text-center">Agregar Producto</button>
-        <button (click)="actualizarProducto(f)"  class="btn btn-outline-primary text-center">Actualizar Producto</button>
-        <button (click)="resetear()"  class="btn btn-outline-danger text-center">Resetear</button>
+        <button (click)="aniadirProducto(f)" class="btn btn-outline-success text-center">Agregar Producto</button>
+        <button (click)="actualizarProducto(f)" class="btn btn-outline-primary text-center">Actualizar Producto</button>
+        <button (click)="resetear()" class="btn btn-outline-danger text-center">Resetear</button>
 
       </form>
-
-      <p *ngIf="mensaje">{{mensaje}}</p>
-
+      <p>{{mensaje}}</p>
     </div>
   </div>
 
