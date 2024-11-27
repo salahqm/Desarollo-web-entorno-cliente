@@ -70,8 +70,12 @@ export class FruteriaComponent {
     form.value.imagen = this.fruta.imagen;
     this.servicio.actualizar(form.value).subscribe((producto: FrutaModule) => {
       this.fruta = producto;
-      this.mensaje = 'Producto'+producto.nombre+' actualizado exitosamente';
+      this.servicio.leerFrutas().subscribe((Frutas: FrutaModule[]) => {
+        this.listaFrutas = Frutas;
+      })
     })
+    this.mensaje = 'Producto'+this.fruta.nombre+' actualizado exitosamente';
+
 
   }
 
