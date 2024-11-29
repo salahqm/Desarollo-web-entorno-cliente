@@ -44,6 +44,14 @@
                   >
                       Listar
                   </button>
+
+                  <button
+                      type="button"
+                      class="btn btn-danger"
+                      (click)="limpiarMensajeria()"
+                  >
+                      Limpiar mensajes
+                  </button>
                   <small class="form-text text-muted">
                       {{enviado}}
                       </small>
@@ -60,6 +68,7 @@
                       <th>Fecha</th>
                       <th>Usuario</th>
                       <th>Mensaje</th>
+                      <th>Acciones</th>
                   </tr>
               </thead>
               <tbody class="text-center">
@@ -68,6 +77,7 @@
                       <td>{{mensaje.fecha}}</td>
                       <td>{{mensaje.usuario}}</td>
                       <td>{{mensaje.mensaje}}</td>
+                      <td><button type="button" class="btn btn-danger" (click)="borrarMensaje(mensaje)">Borrar</button></td>
                   </tr>
               </tbody>
           </table>

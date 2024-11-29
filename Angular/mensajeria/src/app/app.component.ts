@@ -9,6 +9,7 @@ import { ServicioService } from './servicio.service';
 })
 export class AppComponent {
 
+
   listasMensajes!: ChatModule[];
   usuario!: string;
   mensaje!: string;
@@ -31,6 +32,21 @@ export class AppComponent {
     this.enviado="Mensaje enviado";
 
   }
+  limpiarMensajeria() {
+    this.servicio.limpiarMensajes().subscribe((mensaje: ChatModule[]) => {
+      this.listasMensajes = mensaje;
+    })
+    this.enviado="Mensajes limpiado correctamente";
+    }
+    borrarMensaje(mensaje: ChatModule) {
+      this.servicio.borrarMensaje(mensaje).subscribe((mensaje: ChatModule[]) => {
+        this.listasMensajes = mensaje;
+      })
+    this.enviado="Mensaje borrado de "+mensaje.usuario;
+
+
+    }
+
   title = 'mensajeria';
 
 }
