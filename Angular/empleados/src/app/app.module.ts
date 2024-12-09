@@ -1,38 +1,41 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ListadoEmpleadoComponent } from './listado-empleado/listado-empleado.component';
-import { CuadroDialogoEmpledoComponent } from './cuadro-dialogo-empledo/cuadro-dialogo-empledo.component';
-import { FormsModule } from '@angular/forms';
-import { MatTableModule } from '@angular/material/table';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { HttpClientModule } from '@angular/common/http';
-import { MatIconModule } from '@angular/material/icon';
+import { CuadroDialogoEmpleadoComponent } from './cuadro-dialogo-empleado/cuadro-dialogo-empleado.component';
+import { FormsModule } from '@angular/forms'
+import { MatTableModule } from '@angular/material/table'
+import { MatDialogModule } from '@angular/material/dialog'
+import { MatInputModule } from '@angular/material/input'
+import { MatButtonModule } from '@angular/material/button'
+import { HttpClientModule } from '@angular/common/http'
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { DialogoModificarComponent } from './dialogo-modificar/dialogo-modificar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListadoEmpleadoComponent,
-    CuadroDialogoEmpledoComponent
+    CuadroDialogoEmpleadoComponent,
+    DialogoModificarComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
-    FormsModule,
     MatTableModule,
-    MatDialogModule,
+    MatPaginatorModule,
+    MatSortModule,
     MatInputModule,
+    MatFormFieldModule,
     MatButtonModule,
     HttpClientModule,
-    MatIconModule,
-    MatPaginatorModule
+    FormsModule,
+    MatDialogModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
