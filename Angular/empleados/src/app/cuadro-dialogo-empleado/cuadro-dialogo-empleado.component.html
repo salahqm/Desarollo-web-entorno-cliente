@@ -4,6 +4,7 @@
     <div class="contenedor">
       <mat-form-field>
         <input matInput [(ngModel)]="data.id" type="number" placeholder="Inserta ID">
+        <p>{{data.id}}</p>
       </mat-form-field>
       <mat-form-field>
         <input matInput [(ngModel)]="data.nombre" type="text" placeholder="Inserta Nombre">
@@ -27,7 +28,7 @@
 
   <mat-dialog-actions>
     <button mat-button (click)="Cancelar()">Cancelar</button>
-    <button mat-button (click)="guardarEmpleado(data)" cdkFocusInitial>Guardar</button>
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Confirmar</button>
   </mat-dialog-actions>
 
 </div>

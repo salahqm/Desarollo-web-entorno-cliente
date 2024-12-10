@@ -8,7 +8,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ServicioEmpService } from '../servicio-emp.service';
 import { CuadroDialogoEmpleadoComponent } from '../cuadro-dialogo-empleado/cuadro-dialogo-empleado.component';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogoModificarComponent } from '../dialogo-modificar/dialogo-modificar.component';
 @Component({
   selector: 'app-listado-empleado',
   templateUrl: './listado-empleado.component.html',
@@ -46,12 +45,10 @@ export class ListadoEmpleadoComponent implements OnInit {
 
   }
   modificarEmpleado(emp: Empleado) {
-    // Abrir el diálogo y pasar los datos del empleado
-    const dialogoMod = this.dialog.open(DialogoModificarComponent, {
+    const dialogoMod = this.dialog.open(CuadroDialogoEmpleadoComponent, {
       width: '300px',
       height: '600px',
-
-      data: { 
+      data: {
         id: emp.id,
         nombre: emp.nombre,
         direccion: emp.direccion,
@@ -59,14 +56,11 @@ export class ListadoEmpleadoComponent implements OnInit {
         edad: emp.edad,
         imagen: emp.imagen
       }
-
     });
-    // Esperar a que el diálogo se cierre y procesar los datos si se modificaron
+
     dialogoMod.afterClosed().subscribe(x => {
-      if (x != undefined) {
-
+      if (x !== undefined) {
         this.httpCliente.modificarEmpleado(x).subscribe(resultado => {
-
           const index = this.datos.findIndex(e => e.id === x.id);
           if (index !== -1) {
             this.datos[index] = x;
@@ -78,10 +72,14 @@ export class ListadoEmpleadoComponent implements OnInit {
   }
 
   openDialog() {
-    this.dialog.open(CuadroDialogoEmpleadoComponent, {
+    const dialogo1 = this.dialog.open(CuadroDialogoEmpleadoComponent, {
+      data: new Empleado(0, '', '', "", 0, ''),
       width: '300px',
       height: '600px',
-
+    });
+    dialogo1.afterClosed().subscribe((empleado: Empleado) => {
+      if (empleado != undefined)
+        this.aniadir(empleado);
     });
 
   }
@@ -91,6 +89,17 @@ export class ListadoEmpleadoComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
+  }
+
+  aniadir(empleado: Empleado) {
+    //agregar a la lista
+    this.datos.push(new Empleado(empleado.id, empleado.nombre,
+      empleado.direccion, empleado.cargo, empleado.edad, empleado.imagen));
+
+    //agregar a la tabla
+    this.httpCliente.guardarEmpleado(empleado).subscribe(resultado => this.empleado);
+    //renderizar la vista
+
   }
 
 }
