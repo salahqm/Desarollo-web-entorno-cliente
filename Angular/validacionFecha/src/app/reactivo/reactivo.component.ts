@@ -29,8 +29,7 @@ export class ReactivoComponent {
   validateFecha(formGroup: FormGroup) {
     const cumple = formGroup.get('cumple')!.value;
     const fechaActual = new Date();
-    const fechaCumple = new Date(cumple);
-    if (fechaCumple > fechaActual) {
+    if (cumple > fechaActual) {
       formGroup.get('cumple')!.setErrors({ invalidDate: true });
     } else {
       formGroup.get('cumple')!.setErrors(null);
