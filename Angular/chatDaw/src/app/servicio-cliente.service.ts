@@ -9,6 +9,7 @@ import { Usuario } from './usuario';
 })
 export class ServicioClienteService {
 
+
   constructor(private http: HttpClient) { }
 
 
@@ -35,4 +36,10 @@ logeo (usuario:Usuario):Observable<Usuario[]>{
 }
 // http://moralo.atwebpages.com/menuAjax/chat/SeleccionarUsuario.php?email='+user.email+'&pwd='+user.pwd
 // }
+  insertarMensajeP(msjChat : Mensaje):Observable<Mensaje>{
+    return this.http.post<Mensaje>('http://moralo.atwebpages.com/menuAjax/chat/AltaMensajeP.php',msjChat)
+  }
+  leerMensajesP(parametero :String):Observable<Mensaje[]>{
+    return this.http.get<Mensaje[]>('http://moralo.atwebpages.com/menuAjax/chat/ObtenerMensajesP.php?usuario='+parametero)
+  }
 }

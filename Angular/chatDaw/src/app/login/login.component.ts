@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ServicioClienteService } from '../servicio-cliente.service';
 import { Usuario } from '../usuario';
+import { ServicioLocalService } from '../servicio-local.service';
 
 @Component({
   selector: 'app-login',
@@ -10,17 +11,31 @@ import { Usuario } from '../usuario';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-constructor(private router:Router,private servicioCliente:ServicioClienteService){
+privado!: boolean;
+constructor(private router:Router,private servicioLocal:ServicioLocalService){
 
 }
 usuario: Usuario=new Usuario();
 listaUsuarios:Usuario[]=[];
+usuarioEncontrado!:Usuario;
 Login() {
-  this.servicioCliente.logeo(this.usuario).subscribe((x)=>{
-    this.usuario=x[0];
-    sessionStorage.setItem('Nombre',x[0].nombre);
-    this.router.navigate(['chat']);
+
+
+
+ this.servicioLocal.listadoUsuarios().subscribe((x)=>{
+  x.forEach(element => {
+    console.log(element.nombre)
+    if (element.email===this.usuario.email && element.pwd===this.usuario.pwd) {
+
+
+      this.usuarioEncontrado=element;
+      this.router.navigate(['chat']);
+      sessionStorage.setItem('Nombre',this.usuarioEncontrado.email)
+    }
+
   })
+ })
+
 
 }
 

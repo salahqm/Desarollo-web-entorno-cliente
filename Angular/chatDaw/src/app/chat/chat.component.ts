@@ -1,3 +1,4 @@
+
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -5,6 +6,7 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Mensaje } from '../mensaje';
 import { ServicioClienteService } from '../servicio-cliente.service';
+import { ServicioLocalService } from '../servicio-local.service';
 
 @Component({
   selector: 'app-chat',
@@ -12,11 +14,28 @@ import { ServicioClienteService } from '../servicio-cliente.service';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit{
+  constructor(private servicio:ServicioLocalService,private route:Router){}
+  nUsuario!:string|null
+  ngOnInit(): void {
+    this.nUsuario = sessionStorage.getItem('Nombre')
+    if (this.nUsuario==null) {
+      this.dataSource= new MatTableDataSource<Mensaje>()
+    }else{
+
+      this.servicio.listadoDeMensajes().subscribe((resultado:Mensaje[])=>{
+        this.dataSource.data=resultado
+        this.dataSource.paginator = this.paginator
+        this.dataSource.sort=this.sort
+      })
+    }
+  }
 enviarMensaje() {
   this.mensaje.usuario=this.nUsuario || ''
-  this.mensaje.fecha= new Date().toLocaleString()
+  this.mensaje.fecha= new Date().toLocaleString('es-AR')
+  console.log(this.mensaje)
   this.servicio.escribirMensaje(this.mensaje).subscribe(()=>{
-    this.servicio.leerMensajes().subscribe((resultado:Mensaje[])=>{
+
+    this.servicio.listadoDeMensajes().subscribe((resultado:Mensaje[])=>{
       this.dataSource.data=resultado
       this.dataSource.paginator = this.paginator
       this.dataSource.sort=this.sort
@@ -26,13 +45,13 @@ enviarMensaje() {
   window.location.reload()
 }
 recargar(){
-  this.servicio.leerMensajes().subscribe((resultado:Mensaje[])=>{
+  this.servicio.listadoDeMensajes().subscribe((resultado:Mensaje[])=>{
     this.dataSource.data=resultado
     this.dataSource.paginator = this.paginator
     this.dataSource.sort=this.sort
   })
 }
-  constructor(private servicio:ServicioClienteService,private route:Router){}
+
   dataSource = new MatTableDataSource<Mensaje>()
 
   applyFilter(event: Event) {
@@ -43,7 +62,7 @@ recargar(){
       this.dataSource.paginator.firstPage();
     }
   }
-  nUsuario!:string|null
+
   mensaje:Mensaje={
     id:0,
     fecha:'',
@@ -54,19 +73,6 @@ recargar(){
   }
   displayedColumns: string[]=['id','fecha','usuario','mensaje'];
 
-  ngOnInit(): void {
-    this.nUsuario = sessionStorage.getItem('Nombre')
-    if (this.nUsuario==null) {
-      this.dataSource= new MatTableDataSource<Mensaje>()
-    }else{
-
-      this.servicio.leerMensajes().subscribe((resultado:Mensaje[])=>{
-        this.dataSource.data=resultado
-        this.dataSource.paginator = this.paginator
-        this.dataSource.sort=this.sort
-      })
-    }
-  }
 
   cerrarSesion() {
     sessionStorage.removeItem('Nombre')

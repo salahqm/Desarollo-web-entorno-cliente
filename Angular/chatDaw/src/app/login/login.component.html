@@ -12,6 +12,9 @@
         <label for="password">Password</label>
         <input type="password" [(ngModel)]="usuario.pwd" name="password" id="password" class="form-control" placeholder="Teclea password" aria-describedby="helpId">
         <small id="helpId" class="text-muted">Falta password</small>
+        <section class="example-section">
+          <mat-checkbox class="example-margin" [(ngModel)]="privado">Privado</mat-checkbox>
+        </section>
       </div>
       <button class="btn btn-success" (click)="Login()">Registra</button>
     </div>
