@@ -26,11 +26,16 @@ Login() {
   x.forEach(element => {
     console.log(element.nombre)
     if (element.email===this.usuario.email && element.pwd===this.usuario.pwd) {
-
-
       this.usuarioEncontrado=element;
-      this.router.navigate(['chat']);
-      sessionStorage.setItem('Nombre',this.usuarioEncontrado.email)
+      if(this.privado){
+        this.router.navigate(['chatp']);
+        sessionStorage.setItem('Nombre',this.usuarioEncontrado.email)
+      }else{
+
+        this.router.navigate(['chat']);
+        sessionStorage.setItem('Nombre',this.usuarioEncontrado.email)
+      }
+
     }
 
   })

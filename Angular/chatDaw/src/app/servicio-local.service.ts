@@ -13,7 +13,7 @@ export class ServicioLocalService {
 
   logeo(usuario: Usuario):Observable <Usuario> {
     return this.HttpClient.get<Usuario>
-    ('http://localhost/ServiciosChat/logeo.php?email='+usuario.email+'&pwd='+usuario.pwd
+    ('localhost/ServiciosChat/serviciosCliente/login.php?email='+usuario.email+'&pwd='+usuario.pwd
     )
   }
   listadoUsuarios():Observable<Usuario[]>{
@@ -23,14 +23,20 @@ export class ServicioLocalService {
   }
   listadoDeMensajes():Observable<Mensaje[]>{
     return this.HttpClient.get<Mensaje[]>
-    ('http://localhost/ServiciosChat/listadoMensajes.php'
+    ('http://localhost/ServiciosChat/serviciosCliente/listadoMensajes.php'
     )
   }
   escribirMensaje(mensaje:Mensaje):Observable<Mensaje>{
-    return this.HttpClient.post<Mensaje>('http://localhost/ServiciosChat/insertarMensaje.php',mensaje)
+    return this.HttpClient.post<Mensaje>('http://localhost/ServiciosChat/serviciosCliente/insertarmensaje.php',mensaje)
   }
   leerMensajesP(parametero :String):Observable<Mensaje[]>{
-    return this.HttpClient.get<Mensaje[]>('http://localhost/ServiciosChat/leerMensajesP.php?usuario='+parametero)
+    return this.HttpClient.get<Mensaje[]>('http://localhost/ServiciosChat/serviciosCliente/listadoMensajesP.php?usuario='+parametero)
     }
+
+  registro(usuario: Usuario):Observable<Usuario> {
+    return this.HttpClient.post<Usuario>
+    ('http://localhost/ServiciosChat/serviciosCliente/insertarUsuario.php',usuario)
+  }
+
 
 }

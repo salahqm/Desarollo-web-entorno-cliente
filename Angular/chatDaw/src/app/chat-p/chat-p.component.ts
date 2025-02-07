@@ -1,5 +1,5 @@
 import { CdkTableDataSourceInput } from '@angular/cdk/table';
-import { Component, ViewChild, NgModule } from '@angular/core';
+import { Component, ViewChild, NgModule, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Mensaje } from '../mensaje';
 import { MatTableDataSource, MatTable } from '@angular/material/table';
@@ -7,13 +7,16 @@ import { ServicioClienteService } from '../servicio-cliente.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Usuario } from '../usuario';
+import { ServicioLocalService } from '../servicio-local.service';
 
 @Component({
   selector: 'app-chat-p',
   templateUrl: './chat-p.component.html',
   styleUrls: ['./chat-p.component.css']
 })
-export class ChatPComponent {
+export class ChatPComponent implements OnInit {
+  constructor(private servicio:ServicioLocalService,private route:Router){}
+
   msjCargado:Mensaje ={
     id:0,
     fecha:'',
@@ -51,7 +54,7 @@ enviarMensaje() {
 
   this.msjCargado.usuario= this.nUsuario || ''
   this.msjCargado.fecha= new Date().toLocaleString()
-  this.servicio.insertarMensajeP(this.msjCargado).subscribe(()=>{
+  this.servicio.escribirMensaje(this.msjCargado).subscribe(()=>{
     this.servicio.leerMensajesP(this.msjCargado.usuario).subscribe((resultado:Mensaje[])=>{
       this.dataSource.data=resultado
       this.dataSource.paginator = this.paginator
@@ -61,7 +64,6 @@ enviarMensaje() {
   })
 
 }
-  constructor(private servicio:ServicioClienteService,private route:Router){}
   dataSource = new MatTableDataSource<Mensaje>()
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
